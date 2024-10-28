@@ -1,4 +1,6 @@
-How can I use this tool in a participant-facing survey?
+**Instructions for use**
+
+**How can I use this tool in a participant-facing survey?**
 
 For our original study, we integrated this music-matching tool in a participant-facing Qualtrics survey in order to investigate a particular music-evoked emotion. We did this using the javascript tools in Qualtrics.
 
