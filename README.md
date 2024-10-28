@@ -24,3 +24,16 @@ You can do the same. For example, if you want participants to self-select songs 
    c. Number of recommendations. If you want more or fewer recommendations than 10, you can edit this throughout the javascript block (e.g, rec_array.length)
 
 6. Save your project and test thoroughly.
+
+
+**Please cite the tool in your research publications**
+
+Please cite the tool its self:
+
+Hennessy, S., & Greer, T. (2024). SoundsLikeThis: A music matching tool for researchers and music-lovers [Computer software]. University of Southern California. SoundsLikeThis.us
+
+and please cite our original paper:
+
+Hennessy, S., Greer, T., Narayanan, S., Habibi, A., (2024). Unique affective profile of nostalgic music: An extension and conceptual replication of Barrett et al., 2010. Emotion.
+
+
