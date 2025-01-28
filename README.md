@@ -14,7 +14,7 @@ You can do the same. For example, if you want participants to self-select songs 
    c. Go to your GitHub account → Settings → Developer Settings → Personal Access Tokens -> tokens (classic)
    d. Generate a new token and give it all repo permissions. Set the expiration to never
    e. In the github_token variable of .env file, paste the token you get from the result of step e.
-   f. Type “node index_BCI.js” into terminal
+   f. Navigate (cd) to the folder where you saved the folder SoundsLikeThis_js....Type “node index_BCI.js” into terminal
    g. Go to the website displayed in the terminal output. Log in to your premium spotify account.
    h. Now the app is running and you may continue!
 
