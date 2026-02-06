@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.17.1",
+    "github-publish": "^3.0.0",
+    "spotify-web-api-node": "^5.0.2"
+  }
+}
