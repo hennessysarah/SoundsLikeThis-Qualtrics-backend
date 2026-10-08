@@ -2,43 +2,48 @@
 
 **How can I use this tool in a participant-facing survey?**
 
-For our original study, we integrated this music-matching tool in a participant-facing Qualtrics survey in order to investigate a particular music-evoked emotion. We did this using the [javascript tools]([url](https://www.qualtrics.com/support/survey-platform/survey-module/question-options/add-javascript/)) in Qualtrics.
+For our original study, we integrated this music-matching tool in a participant-facing Qualtrics survey in order to investigate a particular music-evoked emotion. We did this using the [JavaScript tools](https://www.qualtrics.com/support/survey-platform/survey-module/question-options/add-javascript/) in Qualtrics.
 
-You can do the same. For example, if you want participants to self-select songs that evoke a memory, and you’d like to present these songs and a collection of musically-matched algorithm-selected songs from SoundsLikeThis, you can follow the steps below.
+You can do the same. Your survey connects to the SoundsLikeThis server (SoundsLikeThis.us), which looks up songs on Spotify and finds musically-matched songs. You do not need to download anything, install any software, or set up a Spotify or GitHub account.
 
-1. Identify how you want your user-inputted and algorithm-outputted songs to be matched. For our work, we set the difference in Valence and Energy to no more than .15.
+For example, if you want participants to self-select songs that evoke a memory, and you'd like to present these songs and a collection of musically-matched algorithm-selected songs from SoundsLikeThis, you can follow the steps below.
 
-2. Download our original application here on github (note, in order for this to work you will need to download Javascript and Node.js to your computer).
-   a. Unzip the folder, and cd to the folder from your terminal
-   b. Go to https://github.com/academicpages/academicpages.github.io -> Use this template -> create a new repository -> repository name "<your github username>/<your github username>.github.io" -> (optional) set to Private 
-   c. Go to your GitHub account → Settings → Developer Settings → Personal Access Tokens -> tokens (classic)
-   d. Generate a new token and give it all repo permissions. Set the expiration to never
-   e. In the github_token variable of .env file, paste the token you get from the result of the previous step .
-   f. In "index_BCI.js" substitute "greert" for your GitHub username at both instances
-   g. Navigate (cd) to the folder where you saved the folder SoundsLikeThis_js....Type “node index_BCI.js” into terminal
-   h. Go to the website displayed in the terminal output. Log in to your premium spotify account.
-   i. Now the app is running and you may continue!
+1. **Decide how you want songs to be matched.** For our work, we set the difference in valence and energy to no more than .15.
 
-4. Create your Qualtrics survey. You may download a copy (a .QSF file) of a simplified example from our lab here on github. In this example, we asked participants to enter a “nostalgic song”, and then the goal was to find a musically-matched song that was unfamiliar. If a musically-matched song was rated as familiar, the survey would present the participant with another musically-matched song up to 10 more times. (See instructions on how to import a QSF file into Qualtrics [here]([url](https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/import-and-export-surveys/))).
+2. **Import the example survey.** Download `Nostalgia_Project_Sample.qsf` from this repository and import it into Qualtrics (see instructions on how to import a QSF file [here](https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/import-and-export-surveys/)). In this example, we asked participants to enter a "nostalgic song," and then the goal was to find a musically-matched song that was unfamiliar. If a musically-matched song was rated as familiar, the survey would present the participant with another musically-matched song, up to 10 times.
 
-5. Click on the song input block, and navigate to the “ Javascript” menu.
+3. **Open the song input question's JavaScript.** Click on the song input question ("Put in ONE song and artist..."), then open its JavaScript editor.
 
-6. Edit the Javascript as necessary. Specifically, you will want to edit the following sections:
-   a. In each song input section, edit content that says "greert" to replace with your own GitHub username.
-   b. min_ar, max_ar, min_val, max_val, min_pop. These are variables that indicate how you want to match your songs based on arousal, valence, and popularity. They are set in the example to .15 for valence and arousal and minimum of 80 for popularity. You can change these values here.
-   c. Number of recommendations. If you want more or fewer recommendations than 10, you can edit this throughout the javascript block (e.g, rec_array.length)
+4. **Edit the settings at the top of the JavaScript** to fit your study:
+   - `ENERGY_RANGE`: the largest allowed difference in energy (arousal) between the participant's song and matched songs. Default: 0.15.
+   - `VALENCE_RANGE`: the largest allowed difference in valence. Default: 0.15.
+   - `MIN_POPULARITY`: the minimum Spotify popularity (0-100) for matched songs. Default: 80.
+   - `MAX_YEAR_DIFF`: matched songs must be released within this many years of the participant's song. Default: 5.
+   - `NUM_RECS`: how many matched songs to save. Default: 10. If you change this, add or remove listening questions to match.
+   - The messages shown to participants, which you can reword or translate.
 
-8. Save your project and test thoroughly.
+5. **Save your survey and test it thoroughly** by previewing it and entering a few songs.
+
+**What the survey saves**
+
+For each participant, the song input question saves these fields as embedded data:
+- `shortUri1`: a Spotify player link for the participant's song
+- `valence1`, `arousal1`: the valence and energy of the participant's song
+- `pop1`, `rel_date1`: its Spotify popularity and release year
+- `rec11` to `rec19`, and `rec110`: Spotify player links for the 10 matched songs
+
+**Good to know**
+
+- If the server has not been used for a while, the first participant may wait up to a minute after clicking the button while it starts up.
+- If no song is found, or there are not enough matched songs, the participant is asked to enter a different song.
 
 
 **Please cite the tool in your research publications**
 
-Please cite the tool its self:
+Please cite the tool itself:
 
 Hennessy, S., & Greer, T. (2024). SoundsLikeThis: A music matching tool for researchers and music-lovers [Computer software]. University of Southern California. SoundsLikeThis.us
 
 and please cite our original paper:
 
 Hennessy, S., Greer, T., Narayanan, S., Habibi, A., (2024). Unique affective profile of nostalgic music: An extension and conceptual replication of Barrett et al., 2010. Emotion.
-
-
