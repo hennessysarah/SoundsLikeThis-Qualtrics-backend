@@ -48,7 +48,7 @@ These fields are already set up in the example survey's Survey Flow. If you buil
 
 **Converting a survey that uses the old method**
 
-If you have a survey built with the earlier version of these instructions (the one that used a GitHub page and an access token), you can switch it to the SoundsLikeThis server:
+If you have a survey built with the earlier version of these instructions (the one that used a GitHub page and an access token from before October 2026), you can switch it to the SoundsLikeThis server:
 
 1. Copy the JavaScript from the song input question in `Nostalgia_Project_Sample.qsf`.
 2. In your survey, open each song input question's JavaScript, delete what is there, and paste in the new code.
