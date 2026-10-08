@@ -19,6 +19,7 @@ For example, if you want participants to self-select songs that evoke a memory, 
    - `VALENCE_RANGE`: the largest allowed difference in valence. Default: 0.15.
    - `MIN_POPULARITY`: the minimum Spotify popularity (0-100) for matched songs. Default: 80.
    - `MAX_YEAR_DIFF`: matched songs must be released within this many years of the participant's song. Default: 5.
+   - `SONG_NUMBER`: which song input this is. Use 1 for the first song input question, 2 for the second, and so on. Song 1 saves to `shortUri1`, `valence1`, `rec11`, `rec12`...; song 2 saves to `shortUri2`, `valence2`, `rec21`, `rec22`..., and so on. The example survey has one song input, so it uses 1.
    - `NUM_RECS`: how many matched songs to save. Default: 10. If you change this, add or remove listening questions to match.
    - The messages shown to participants, which you can reword or translate.
 
@@ -26,7 +27,7 @@ For example, if you want participants to self-select songs that evoke a memory, 
 
 **What the survey saves**
 
-For each participant, the song input question saves these fields as embedded data.
+For each participant, the song input question saves these fields as embedded data. The examples below are for song 1; for song 2, replace the 1 with 2 (e.g. `song2_danceability`, `rec21`).
 
 For the participant's song:
 - `shortUri1`: a Spotify player link for the song
@@ -44,6 +45,16 @@ For each of the 10 matched songs (`rec11` to `rec19`, and `rec110`):
 The audio features are: acousticness, danceability, energy, instrumentalness, key, liveness, loudness, mode, speechiness, tempo, time_signature, valence and duration_ms. See [Spotify's documentation](https://developer.spotify.com/documentation/web-api/reference/get-audio-features) for what each one means.
 
 These fields are already set up in the example survey's Survey Flow. If you build your own survey, or change `NUM_RECS`, add the matching fields as embedded data in your Survey Flow, or Qualtrics will not save them.
+
+**Converting a survey that uses the old method**
+
+If you have a survey built with the earlier version of these instructions (the one that used a GitHub page and an access token), you can switch it to the SoundsLikeThis server:
+
+1. Copy the JavaScript from the song input question in `Nostalgia_Project_Sample.qsf`.
+2. In your survey, open each song input question's JavaScript, delete what is there, and paste in the new code.
+3. In each copy, set `SONG_NUMBER` to match that question (1, 2, 3...), and set `NUM_RECS`, the matching settings and the messages to match what your old code used.
+4. To also save the new audio feature fields (e.g. `song1_danceability`, `rec11_tempo`), add them as embedded data in your Survey Flow. Your existing fields already work without changes.
+5. Preview and test each song input.
 
 **Good to know**
 
