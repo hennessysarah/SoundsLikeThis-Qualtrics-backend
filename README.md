@@ -26,11 +26,24 @@ For example, if you want participants to self-select songs that evoke a memory, 
 
 **What the survey saves**
 
-For each participant, the song input question saves these fields as embedded data:
-- `shortUri1`: a Spotify player link for the participant's song
-- `valence1`, `arousal1`: the valence and energy of the participant's song
+For each participant, the song input question saves these fields as embedded data.
+
+For the participant's song:
+- `shortUri1`: a Spotify player link for the song
+- `song1_name`, `song1_artists`: the song title and artists
 - `pop1`, `rel_date1`: its Spotify popularity and release year
-- `rec11` to `rec19`, and `rec110`: Spotify player links for the 10 matched songs
+- `valence1`, `arousal1`: its valence and energy (kept for compatibility with earlier versions)
+- `song1_<feature>`: every Spotify audio feature (listed below), e.g. `song1_danceability`
+
+For each of the 10 matched songs (`rec11` to `rec19`, and `rec110`):
+- `rec11`: a Spotify player link for the song
+- `rec11_name`, `rec11_artists`: the song title and artists
+- `rec11_popularity`, `rec11_release_year`: its Spotify popularity and release year
+- `rec11_<feature>`: every Spotify audio feature, e.g. `rec11_tempo`
+
+The audio features are: acousticness, danceability, energy, instrumentalness, key, liveness, loudness, mode, speechiness, tempo, time_signature, valence and duration_ms. See [Spotify's documentation](https://developer.spotify.com/documentation/web-api/reference/get-audio-features) for what each one means.
+
+These fields are already set up in the example survey's Survey Flow. If you build your own survey, or change `NUM_RECS`, add the matching fields as embedded data in your Survey Flow, or Qualtrics will not save them.
 
 **Good to know**
 
