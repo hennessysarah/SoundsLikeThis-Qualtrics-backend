@@ -18,7 +18,7 @@ For example, if you want participants to self-select songs that evoke a memory, 
    - `ENERGY_RANGE`: the largest allowed difference in energy (arousal) between the participant's song and matched songs. Default: 0.15.
    - `VALENCE_RANGE`: the largest allowed difference in valence. Default: 0.15.
    - `MIN_POPULARITY`: the minimum Spotify popularity (0-100) for matched songs. Default: 80.
-   - `MAX_YEAR_DIFF`: matched songs must be released within this many years of the participant's song. Default: 5.
+   - `MAX_YEAR_DIFF`: matched songs must be released within this many years of the participant's song (this many years is allowed; use 0 for the same release year). Default: 5.
    - `SONG_NUMBER`: which song input this is. Use 1 for the first song input question, 2 for the second, and so on. Song 1 saves to `shortUri1`, `valence1`, `rec11`, `rec12`...; song 2 saves to `shortUri2`, `valence2`, `rec21`, `rec22`..., and so on. The example survey has one song input, so it uses 1.
    - `NUM_RECS`: how many matched songs to save. Default: 10. If you change this, add or remove listening questions to match.
    - The messages shown to participants, which you can reword or translate.
@@ -59,7 +59,7 @@ If you have a survey built with the earlier version of these instructions (the o
 **Good to know**
 
 - If the server has not been used for a while, the first participant may wait up to a minute after clicking the button while it starts up.
-- If no song is found, or there are not enough matched songs, the participant is asked to enter a different song.
+- Every matched song is checked against your energy, valence, popularity and release-year limits. If no song is found, or there are not enough songs that fit all of the limits, the participant is asked to enter a different song. Tighter limits mean fewer songs qualify.
 
 
 **Please cite the tool in your research publications**
